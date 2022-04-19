@@ -16,7 +16,6 @@ export default class MyDocument extends Document {
   ): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
-
     try {
       ctx.renderPage = () =>
         originalRenderPage({
@@ -42,13 +41,12 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <title>Pokenext</title>
           <meta charSet="utf-8" />
-
           <link
             href="https://fonts.googleapis.com/css?family=Roboto:400,500,700"
             rel="stylesheet"
           />
-
           <link rel="icon" href={favicon} />
         </Head>
         <body>
