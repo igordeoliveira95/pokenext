@@ -1,9 +1,11 @@
 import { Fragment, useCallback, useEffect, useState } from 'react'
+import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
+import { Container } from '../components/Header/styles'
+import { PokemonCard } from '../components/PokemonCard'
 import Pokemon from '../interfaces/pokemon'
 import Axios from '../services/axios'
-
-const defaultObject: Pokemon = {
+const defaultPokemonObject: Pokemon = {
   name: '',
   id: 0,
   imageUrl: '',
@@ -11,7 +13,9 @@ const defaultObject: Pokemon = {
 }
 
 const Home: React.FC = () => {
-  const [pokemon, setPokemon] = useState<Pokemon>(defaultObject)
+  const [pokemon, setPokemon] = useState<Pokemon>(defaultPokemonObject)
+  const [errorPokemonNotFound, setErrorPokemonNotFound] =
+    useState<boolean>(false)
 
   const getPokemon = useCallback(async (search: string | number) => {
     if (search === 0) {
@@ -20,8 +24,7 @@ const Home: React.FC = () => {
     try {
       const pokemonSearch: string | number =
         typeof search === 'string' ? search.toLocaleLowerCase() : search
-      const { data } = await Axios.get<any>(`pokemon/${pokemonSearch}`)
-
+      const { data } = await Axios.get(`pokemon/${pokemonSearch}`)
       setPokemon({
         name: data.name,
         id: data.id,
@@ -29,7 +32,7 @@ const Home: React.FC = () => {
         type: data.types
       })
     } catch {
-      alert('Pokemon not found.')
+      setErrorPokemonNotFound(true)
     }
   }, [])
 
@@ -40,16 +43,14 @@ const Home: React.FC = () => {
   return (
     <Fragment>
       <Header />
-      <main>
-        <h1>
-          {pokemon?.imageUrl && (
-            <>
-              <img src={pokemon?.imageUrl} width={150} height={150} />
-            </>
-          )}
-          {pokemon?.name} {pokemon?.id} {pokemon?.type.map(t => t.type.name)}
-        </h1>
-      </main>
+      <Container>
+        {!errorPokemonNotFound ? (
+          <PokemonCard {...pokemon} />
+        ) : (
+          <p>Pokemon not found</p>
+        )}
+      </Container>
+      <Footer />
     </Fragment>
   )
 }
