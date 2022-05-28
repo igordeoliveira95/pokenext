@@ -10,4 +10,8 @@ export const Card = styled.div`
   border-radius: 5%;
   font-size: 1rem;
   font-weight: 500;
+
+  img {
+    filter: brightness(0%);
+  }
 `

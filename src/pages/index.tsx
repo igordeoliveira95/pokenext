@@ -5,6 +5,7 @@ import { Container } from '../components/Header/styles'
 import { PokemonCard } from '../components/PokemonCard'
 import Pokemon from '../interfaces/pokemon'
 import Axios from '../services/axios'
+
 const defaultPokemonObject: Pokemon = {
   name: '',
   id: 0,
@@ -17,14 +18,14 @@ const Home: React.FC = () => {
   const [errorPokemonNotFound, setErrorPokemonNotFound] =
     useState<boolean>(false)
 
-  const getPokemon = useCallback(async (search: string | number) => {
-    if (search === 0) {
-      return
-    }
+  const generateRandomNumber = (maxLimit: number = 898) => {
+    const randomNumber: number = Math.round(Math.random() * maxLimit)
+    return randomNumber
+  }
+
+  const getPokemon = useCallback(async (searchId: number) => {
     try {
-      const pokemonSearch: string | number =
-        typeof search === 'string' ? search.toLocaleLowerCase() : search
-      const { data } = await Axios.get(`pokemon/${pokemonSearch}`)
+      const { data } = await Axios.get(`pokemon/${searchId}`)
       setPokemon({
         name: data.name,
         id: data.id,
@@ -37,7 +38,7 @@ const Home: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    getPokemon(1)
+    getPokemon(generateRandomNumber())
   }, [])
 
   return (
