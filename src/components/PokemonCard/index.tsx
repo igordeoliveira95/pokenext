@@ -6,10 +6,12 @@ export const PokemonCard: React.FC<Pokemon> = selectedPokemon => {
   return (
     <Fragment>
       <Card>
+        <div />
         <img src={selectedPokemon?.imageUrl} width={150} height={150} />
         <p>Who is this Pokémon?</p>
-        <input type="text" />
-        <button>Try</button>
+        <button>Option One</button>
+        <button>Option Two</button>
+        <button>Option Three</button>
       </Card>
     </Fragment>
   )

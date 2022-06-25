@@ -23,8 +23,11 @@ const Home: React.FC = () => {
     return randomNumber
   }
 
-  const getPokemon = useCallback(async (searchId: number) => {
+  const getPokemon = useCallback(async () => {
     try {
+      const searchId = generateRandomNumber()
+      const maxOptions: number = 3
+      for (let i: number = 0; i < maxOptions; i++) {}
       const { data } = await Axios.get(`pokemon/${searchId}`)
       setPokemon({
         name: data.name,
@@ -38,7 +41,7 @@ const Home: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    getPokemon(generateRandomNumber())
+    getPokemon()
   }, [])
 
   return (
