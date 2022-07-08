@@ -1,5 +1,5 @@
 import pokeballIcon from '../../assets/pokeball.png'
-import { Container, Image } from '../Header/styles'
+import { Container, Image } from './styles'
 
 export const Header: React.FC = () => {
   return (
