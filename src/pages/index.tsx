@@ -12,12 +12,14 @@ const Home: React.FC = () => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null)
   const [errorPokemonNotFound, setErrorPokemonNotFound] =
     useState<boolean>(false)
+  const [answerIsCorrect, setAnswerIsCorrect] = useState<boolean | null>(null)
+  console.log('answerIsCorrect =>', answerIsCorrect)
 
   const generateRandomNumber = (maxLimit: number = 898) => {
     return Math.round(Math.random() * maxLimit)
   }
 
-  const getPokemon = useCallback(async () => {
+  const getPokemon = useCallback(async (): Promise<void> => {
     try {
       const response = await axios.all([
         Axios.get(`pokemon/${generateRandomNumber()}`),
@@ -39,6 +41,10 @@ const Home: React.FC = () => {
     }
   }, [])
 
+  const checkAnswer = (id: number): void => {
+    id === pokemon.id ? setAnswerIsCorrect(true) : setAnswerIsCorrect(false)
+  }
+
   useEffect(() => {
     getPokemon()
   }, [])
@@ -54,7 +60,12 @@ const Home: React.FC = () => {
         )}
         {pokemonOptions.map(poke => {
           return (
-            <OptionButton key={poke.id + generateRandomNumber()}>
+            <OptionButton
+              key={poke.id}
+              onClick={() => {
+                checkAnswer(poke.id)
+              }}
+            >
               {poke.name}
             </OptionButton>
           )

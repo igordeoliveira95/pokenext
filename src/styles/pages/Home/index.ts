@@ -5,10 +5,9 @@ export const Container = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0.5rem;
 
-  @media (max-width: 900px) {
-    width: 80%;
+  @media (max-width: 720px) {
+    width: 100%;
   }
 `
 
@@ -21,13 +20,13 @@ export const OptionButton = styled.button`
   margin-top: 1rem;
   cursor: pointer;
   transition: 0.3s;
-  font-size: 1rem;
+  font-size: 1.1rem;
 
   :hover {
     filter: brightness(85%);
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 720px) {
     width: 100%;
   }
 `

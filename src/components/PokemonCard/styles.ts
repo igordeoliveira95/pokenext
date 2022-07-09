@@ -11,7 +11,8 @@ export const Card = styled.div`
   font-weight: 500;
   width: 30%;
 
-  div {
+  @media (max-width: 720px) {
+    width: 100%;
   }
 
   img {

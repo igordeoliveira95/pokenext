@@ -3,8 +3,7 @@ import { createGlobalStyle, DefaultTheme } from 'styled-components'
 export default createGlobalStyle<{ theme: DefaultTheme }>`
   * {
     margin: 0;
-    padding: 0ex;
-    box-sizing: border-box;
+    padding: 0;
   }
 
   body {

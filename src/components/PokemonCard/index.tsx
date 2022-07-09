@@ -6,8 +6,8 @@ export const PokemonCard: React.FC<Pokemon> = correctPokemon => {
   return (
     <Fragment>
       <Card>
-        <img src={correctPokemon?.imageUrl} width={150} height={150} />
-        <p>Who is this Pokémon?</p>
+        <img src={correctPokemon?.imageUrl} width={200} height={200} />
+        <p>Who is that Pokémon?</p>
       </Card>
     </Fragment>
   )

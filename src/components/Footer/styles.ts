@@ -5,8 +5,7 @@ export const Container = styled.div`
   justify-content: space-between;
   position: absolute;
   bottom: 0;
-  height: 3rem;
-  width: 100%;
+  width: auto;
   padding: 1rem;
   font-size: 1rem;
   font-weight: 400;
