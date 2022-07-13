@@ -13,9 +13,8 @@ const Home: React.FC = () => {
   const [errorPokemonNotFound, setErrorPokemonNotFound] =
     useState<boolean>(false)
   const [answerIsCorrect, setAnswerIsCorrect] = useState<boolean | null>(null)
-  console.log('answerIsCorrect =>', answerIsCorrect)
 
-  const generateRandomNumber = (maxLimit: number = 898) => {
+  const generateRandomNumber = (maxLimit: number = 898): number => {
     return Math.round(Math.random() * maxLimit)
   }
 
@@ -29,7 +28,7 @@ const Home: React.FC = () => {
       const index: number = generateRandomNumber(3)
       const pokemons: Pokemon[] = response.map(({ data }) => ({
         id: data.id,
-        name: data.name.toUpperCase(),
+        name: data.name.toUpperCase().replaceAll('-', ' '),
         type: data.types,
         imageUrl: data.sprites.front_default
       }))
@@ -54,14 +53,14 @@ const Home: React.FC = () => {
       <Header />
       <Container>
         {!errorPokemonNotFound ? (
-          <PokemonCard {...pokemon} />
+          <PokemonCard correctPokemon={pokemon} answerState={answerIsCorrect} />
         ) : (
           <p>Pokemon not found</p>
         )}
         {pokemonOptions.map(poke => {
           return (
             <OptionButton
-              key={poke.id}
+              key={poke.id + generateRandomNumber()}
               onClick={() => {
                 checkAnswer(poke.id)
               }}

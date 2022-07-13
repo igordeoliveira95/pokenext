@@ -6,6 +6,7 @@ export const Container = styled.div`
   position: absolute;
   bottom: 0;
   width: auto;
+  height: 1rem;
   padding: 1rem;
   font-size: 1rem;
   font-weight: 400;
@@ -19,5 +20,9 @@ export const Container = styled.div`
       filter: brightness(80%);
       cursor: pointer;
     }
+  }
+
+  @media (max-width: 720px) {
+    justify-content: center;
   }
 `

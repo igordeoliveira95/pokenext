@@ -5,6 +5,7 @@ export const Container = styled.header`
   align-items: center;
   justify-content: center;
   margin-top: 0.5rem;
+  width: auto;
 
   strong {
     color: #ff3d00;

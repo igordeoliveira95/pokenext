@@ -1,21 +1,31 @@
 import styled from 'styled-components'
 
-export const Card = styled.div`
+type StyleProps = {
+  showPokemon: number
+}
+
+export const Card = styled.div<StyleProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #292929;
   margin-top: 3rem;
-  padding: 1rem;
   font-size: 1rem;
   font-weight: 500;
   width: 30%;
 
-  @media (max-width: 720px) {
-    width: 100%;
+  img {
+    transition: 2s;
+    filter: brightness(${props => props.showPokemon}%);
+    -webkit-user-drag: none;
+    pointer-events: none;
   }
 
-  img {
-    filter: brightness(0%);
+  p {
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 720px) {
+    width: 90%;
   }
 `

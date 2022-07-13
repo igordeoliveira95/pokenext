@@ -4,11 +4,6 @@ export const Container = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  @media (max-width: 720px) {
-    width: 100%;
-  }
 `
 
 export const OptionButton = styled.button`
@@ -21,12 +16,13 @@ export const OptionButton = styled.button`
   cursor: pointer;
   transition: 0.3s;
   font-size: 1.1rem;
+  letter-spacing: 2px;
 
   :hover {
     filter: brightness(85%);
   }
 
   @media (max-width: 720px) {
-    width: 100%;
+    width: 90%;
   }
 `
