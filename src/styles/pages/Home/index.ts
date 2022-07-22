@@ -22,7 +22,7 @@ export const OptionButton = styled.button`
     filter: brightness(85%);
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 900px) {
     width: 90%;
   }
 `

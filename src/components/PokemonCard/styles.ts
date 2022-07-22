@@ -15,7 +15,7 @@ export const Card = styled.div<StyleProps>`
   width: 30%;
 
   img {
-    transition: 2s;
+    transition: 0.2s;
     filter: brightness(${props => props.showPokemon}%);
     -webkit-user-drag: none;
     pointer-events: none;
@@ -25,7 +25,7 @@ export const Card = styled.div<StyleProps>`
     margin-bottom: 1rem;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 900px) {
     width: 90%;
   }
 `

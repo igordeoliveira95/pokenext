@@ -40,8 +40,9 @@ const Home: React.FC = () => {
     }
   }, [])
 
-  const checkAnswer = (id: number): void => {
-    id === pokemon.id ? setAnswerIsCorrect(true) : setAnswerIsCorrect(false)
+  const playAgain = async (): Promise<void> => {
+    setAnswerIsCorrect(null)
+    await getPokemon()
   }
 
   useEffect(() => {
@@ -57,18 +58,16 @@ const Home: React.FC = () => {
         ) : (
           <p>Pokemon not found</p>
         )}
-        {pokemonOptions.map(poke => {
+        {answerIsCorrect === null ? pokemonOptions.map(poke => {
           return (
             <OptionButton
               key={poke.id + generateRandomNumber()}
-              onClick={() => {
-                checkAnswer(poke.id)
-              }}
+              onClick={() => poke.id === pokemon.id ? setAnswerIsCorrect(true) : setAnswerIsCorrect(false)}
             >
               {poke.name}
             </OptionButton>
           )
-        })}
+        }) : <OptionButton onClick={playAgain}>Play again!</OptionButton>}
       </Container>
       <Footer />
     </Fragment>

@@ -15,7 +15,13 @@ export const PokemonCard: React.FC<Props> = ({
     <Fragment>
       <Card showPokemon={answerState !== null ? 100 : 0}>
         <img src={correctPokemon?.imageUrl} width={200} height={200} />
-        <p>Who is that Pokémon?</p>
+        {answerState === null ? (
+          <p>Who is that Pokémon?</p>
+        ) : answerState === true ? (
+          <p>Correct!</p>
+        ) : (
+          <p>Incorrect, correct was {correctPokemon?.name}</p>
+        )}
       </Card>
     </Fragment>
   )
